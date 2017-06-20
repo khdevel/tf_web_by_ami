@@ -4,7 +4,6 @@ variable "region" {
 
 variable "key_name" {
   description = "The local key"
-  default     = "kamil@iMac"
 }
 
 variable "ami" {
@@ -28,3 +27,11 @@ variable "environment" {
   description = "The name of our environment"
 }
 
+variable "ami_filter" {
+  description = "The AMI filter"
+}
+
+variable "remote_source" {
+  default     = "git@github.com:khdevel/tf_remote_state.git"
+  description = "The remote sorce for the state file"
+}

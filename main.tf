@@ -7,7 +7,7 @@ data "aws_ami_ids" "awslinux" {
 
   filter {
     name   = "name"
-    values = ["myWebAMI"]
+    values = ["${var.ami_filter}"]
   }
 }
 
