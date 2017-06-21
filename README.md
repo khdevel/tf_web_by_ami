@@ -6,7 +6,8 @@ git clone
 ```
 2. Get the module
 ```
-terraform get -update```
+terraform get -update
+```
 3. Plan it:
 ```
 terraform plan
