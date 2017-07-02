@@ -1,7 +1,3 @@
-variable "region" {
-  description = "The AWS region"
-}
-
 variable "key_name" {
   description = "The local key"
 }

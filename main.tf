@@ -1,18 +1,14 @@
+terraform {
+  backend "s3" {}
+}
+
 provider "aws" {
   region = "${var.region}"
 }
 
-data "aws_ami_ids" "awslinux" {
-  owners = ["self"]
-
-  filter {
-    name   = "name"
-    values = ["${var.ami_filter}"]
-  }
-}
-
-module "remote_state" {
-  source      = "git@github.com:khdevel/tf_remote_state.git"
-  prefix      = "${var.prefix}"
-  environment = "${var.environment}"
+module "webhost" {
+  ami           = "${var.ami}"
+  instance_type = "${var.instance_type}"
+  key_name      = "${var.key_name}"
+  source        = "webhost"
 }

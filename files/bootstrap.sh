@@ -1,7 +1,7 @@
 #!/bin/bash
 yum install httpd php -y
 yum update -y
-chkconfig httpd on
-service httpd start
+systemctl enable httpd
+systemctl start httpd
 echo "<?php phpinfo();?>" > /var/www/html/index.php
 cd /var/www/html
