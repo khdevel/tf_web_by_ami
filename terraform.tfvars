@@ -1,5 +1,5 @@
-ami          = "ami-dbf710a2"
-key_name     = "kamil@iMac"
+ami          = "..."
+key_name     = "..."
 region       = "eu-west-1"
 nodes_number = 2
 
