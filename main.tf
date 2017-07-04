@@ -1,16 +1,27 @@
+terraform {
+  backend "s3" {}
+}
+
 provider "aws" {
   region = "${var.region}"
 }
 
-module "remote_state" {
-  source      = "git@github.com:khdevel/tf_remote_state.git"
-  prefix      = "${var.prefix}"
-  environment = "${var.environment}"
+module "securitygroups" {
+  sg_name = "some_security_group"
+  source  = "securitygroups"
 }
 
 module "webhost" {
-  source        = "./module"
-  key_name      = "${var.key_name}"
-  ami_filter    = "${var.ami_filter}"
+  ami           = "${var.ami}"
   instance_type = "${var.instance_type}"
+  key_name      = "${var.key_name}"
+  nodes_number  = "${var.nodes_number}"
+  sg            = "${module.securitygroups.security_group_id}"
+  source        = "webhost"
+}
+
+module "phphost" {
+  instance_ip_addresses = "${module.webhost.public_ip}"
+  nodes_number          = "${var.nodes_number}"
+  source                = "phphost"
 }
